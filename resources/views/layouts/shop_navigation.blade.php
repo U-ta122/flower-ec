@@ -15,6 +15,10 @@
                     <x-nav-link :href="route('shop.dashboard')" :active="request()->routeIs('shop.dashboard')">
                         {{ __('ショップ Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('shop.products.create')" :active="request()->routeIs('shop.products.create')">
+                        {{ __('商品投稿') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -68,7 +72,11 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('shop.dashboard')" :active="request()->routeIs('shop.dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('ショップDashboard') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('shop.products.create')" :active="request()->routeIs('shop.products.create')">
+                {{ __('商品投稿') }}
             </x-responsive-nav-link>
         </div>
 

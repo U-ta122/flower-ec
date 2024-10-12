@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,5 +42,16 @@ Route::prefix('shop')->name('shop.')->group(function(){
         return view('shop.dashboard');
     })->middleware(['auth:shop'])->name('dashboard');
     
+    Route::controller(ProductController::class)->middleware(['auth:shop'])->group(function(){
+        Route::get('/', 'index');
+        Route::post('/products', 'store');
+        Route::get('/products/create', 'create')->name('products.create');
+        Route::get('/products/{product}', 'show');
+        Route::put('/products/{product}', 'update');
+        Route::delete('/products/{product}', 'delete');
+        Route::get('/products/{product}/edit', 'edit');
+    });
+        
+
     require __DIR__.'/shop.php';
 });
