@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-shop-layout>
     <form action="/shop/products" method="POST" enctype="multipart/form-data">
         @csrf
         <p>商品名：</p>
@@ -13,6 +13,5 @@
             <input type="file" name="image">
         </div>
         <input type="submit" value="実行"/>
-        </form>
-
-</x-app-layout>
+    </form>
+</x-shop-layout>
