@@ -6,7 +6,7 @@
     <p>価格：</p>
     <p>{{$product->price}} 円</p>
     <div>
-        <img src="{{ $product->image_url }}" alt="画像が読み込めません。">
+        <img src="{{ $product->image_url }}" alt="画像が読み込めません。"width="193" height="130">
     </div>
 
 </x-app-layout>
