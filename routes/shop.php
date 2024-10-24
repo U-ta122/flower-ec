@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
     Route::get('shop/login', [AuthenticatedSessionController::class, 'create'])
         ->middleware('guest:shop')
-        ->name('login');
+        ->name('shop.login');
 
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])
         ->middleware('guest:shop');
