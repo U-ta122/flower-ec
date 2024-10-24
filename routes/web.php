@@ -54,8 +54,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-require __DIR__.'/shop.php';
-
 Route::prefix('shop')->name('shop.')->group(function(){
 
     Route::get('/dashboard', function () {
@@ -79,6 +77,6 @@ Route::prefix('shop')->name('shop.')->group(function(){
         Route::post('/create', 'store');
     });
         
-
+require __DIR__.'/shop.php';
   
 });
