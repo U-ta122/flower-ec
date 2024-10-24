@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\User_PostController;
+use App\Http\Controllers\shop\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
