@@ -17,7 +17,7 @@
                     </x-nav-link>
 
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
-                        {{ __('商品購入') }}
+                        {{ __('商品一覧') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('posts')" :active="request()->routeIs('posts')">
