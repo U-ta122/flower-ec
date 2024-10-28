@@ -19,6 +19,10 @@
                     <x-nav-link :href="route('shop.products.create')" :active="request()->routeIs('shop.products.create')">
                         {{ __('商品投稿') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('shop.post.create')" :active="request()->routeIs('shop.post.create')">
+                        {{ __('告知作成') }}
+                    </x-nav-link>
                 </div>
             </div>
 

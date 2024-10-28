@@ -19,6 +19,10 @@
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         {{ __('商品一覧') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('posts')" :active="request()->routeIs('posts')">
+                        {{ __('掲示板') }}
+                    </x-nav-link> 
                 </div>
             </div>
 

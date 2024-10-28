@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\GoodsController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\User_PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +44,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('payment')->name('payment.')->group(function () {
+Route::prefix('payment')->name('payment.')->middleware('auth')->group(function () {
     Route::get('/create/{product}', [PaymentController::class, 'create'])->name('create');
     Route::post('/store', [PaymentController::class, 'store'])->name('store');
+});
+Route::middleware('auth')->group(function () {
+    Route::get('/posts', [User_PostController::class, 'index'])->name('posts');
+    Route::get('/posts/{post}', [User_PostController::class, 'show']);
+    //ルーティングが同じだと後ろを参照してしまう。
 });
 
 require __DIR__.'/auth.php';
@@ -63,8 +70,15 @@ Route::prefix('shop')->name('shop.')->group(function(){
         Route::put('/products/{product}', 'update');
         Route::delete('/products/{product}', 'delete');
         Route::get('/products/{product}/edit', 'edit');
+        //同じルーティングの時はメソッドが違うので注意
+        //{ルートパラメータ}を使うときは後ろの方の行でないと巻き込み事故が起こる。
+    });
+
+    Route::prefix('/post')->name('post.')->controller(PostController::class)->middleware(['auth:shop'])->group(function(){
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create', 'store');
     });
         
-
-    require __DIR__.'/shop.php';
+require __DIR__.'/shop.php';
+  
 });
