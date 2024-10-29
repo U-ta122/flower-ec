@@ -26,4 +26,8 @@ class ProductController extends Controller
     public function show(Product $product){
         return view('products/product')-> with(['product'=> $product]);
     }
+
+    // public function index(){
+    //     return view("products.create");
+    // }
 }
