@@ -70,7 +70,7 @@ return [
         ],
         'shops' => [
             'driver' => 'eloquent',
-            'model' => App\Models\shop::class,
+            'model' => App\Models\Shop::class,
         ],
 
         // 'users' => [

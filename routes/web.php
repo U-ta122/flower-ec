@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\GoodsController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\User_PostController;
 use App\Http\Controllers\ChatController;
@@ -34,7 +35,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/index', [GoodsController::class, 'show'])->name('index');
+    Route::get('/index', [GoodsController::class, 'create'])->name('index');
+    Route::get('/index/{product}', [GoodsController::class, 'show']);
 });
 
 Route::middleware('auth')->group(function () {
@@ -43,6 +45,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::prefix('payment')->name('payment.')->middleware('auth')->group(function () {
+    Route::get('/create/{product}', [PaymentController::class, 'create'])->name('create');
+    Route::post('/store', [PaymentController::class, 'store'])->name('store');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/posts', [User_PostController::class, 'index'])->name('posts');
     Route::get('/posts/{post}', [User_PostController::class, 'show']);
@@ -77,6 +83,6 @@ Route::prefix('shop')->name('shop.')->group(function(){
         Route::post('/create', 'store');
     });
         
-
-    require __DIR__.'/shop.php';
+require __DIR__.'/shop.php';
+  
 });
