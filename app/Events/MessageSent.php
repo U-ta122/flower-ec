@@ -17,6 +17,9 @@ class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    // ※イベントをブロードキャストすると、publicメンバーが送信される。
+    public $chat;
+
     /**
      * Create a new event instance.
      */
