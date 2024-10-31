@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Library\Chat;
 // use App\Models\Chat;
 
-class MessageSent
+class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
