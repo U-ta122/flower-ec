@@ -34,7 +34,7 @@ class ChatController extends Controller
             $chat->save();
         }
 
-        $messages = Message::where('chat_id', $chat->id)->orderBy('updated_at', 'DESC')->get();;
+        $messages = Message::where('chat_id', $chat->id)->orderBy('updated_at', 'DESC')->get();
 
 
         return view('chats/chat')->with(['chat' => $chat, 'messages' => $messages, 'product' => $product]);
