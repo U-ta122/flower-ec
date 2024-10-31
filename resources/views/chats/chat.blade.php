@@ -64,9 +64,9 @@
             {{-- テキストHTML要素の中身のクリア --}}
             elementInputMessage.value = "";
         }
-        window.addEventListener("DOMContentLoaded", () => {
+        // window.addEventListener("DOMContentLoaded", () => {
             const elementListMessage = document.getElementById("list_message");
-            console.log("test");
+
             // Listen開始と、イベント発生時の処理の定義
             window.Echo.private('chat').listen('MessageSent', (e) => {
                 console.log("test2");
@@ -86,6 +86,6 @@
                     elementListMessage.prepend(elementLi); // リストの一番上に追加
                 }
             });
-        });
+        // });
     </script>
 </x-app-layout>
