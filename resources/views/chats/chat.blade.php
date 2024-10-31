@@ -55,7 +55,7 @@
             axios
                 .post( '/chat', params )
                 .then( response => {
-                    // console.log(response);
+                    console.log(response);
                     // console.log(chatId)
                 } )
                 .catch(error => {
