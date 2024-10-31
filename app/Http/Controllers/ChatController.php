@@ -14,7 +14,7 @@ class ChatController extends Controller
 {
     public function openChat(Product $product)
     {
-    // 自分と相手のIDを取得
+        // 自分と相手のIDを取得
         $myUserId = auth()->user()->id;
         $productId = $product->id; 
         $shopId = $product->shop->id;// ここで製品を販売しているお店のユーザーIDを指定
@@ -37,6 +37,34 @@ class ChatController extends Controller
         $messages = Message::where('chat_id', $chat->id)->orderBy('updated_at', 'DESC')->get();;
 
 
-        return view('chats/chat')->with(['chat' => $chat, 'messages' => $messages]);
+        return view('chats/chat')->with(['chat' => $chat, 'messages' => $messages, 'product' => $product]);
+    }
+    // メッセージ送信時の処理
+    public function sendMessage(Message $message, Request $request)
+    {
+        // dd($request);
+        // auth()->user() : 現在認証しているユーザーを取得
+        $user = auth()->user();
+        $strUserId = $user->id;
+        $strUsername = $user->name;
+
+        // リクエストからデータの取り出し
+        $strMessage = $request->input('message');
+
+        // メッセージオブジェクトの作成
+        $chat = new Chat;
+        $chat->body = $strMessage;
+        $chat->chat_id = $request->input('chat_id');
+
+        $chat->userName = $strUsername;
+        MessageSent::dispatch($chat);    
+
+        //データベースへの保存処理
+        $message->user_id = $strUserId;
+        $message->body = $strMessage;
+        $message->chat_id = $request->input('chat_id');
+        $message->save();
+
+        return response()->json(['message' => 'Message sent successfully']);
     }
 }
