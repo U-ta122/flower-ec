@@ -46,7 +46,7 @@
             params = { 
                 'message': strMessage,
                 'chat_id': chatId,
-                'product_id': productId
+                // 'product_id': productId
             };
 
             // console.log(params);
@@ -64,7 +64,7 @@
             {{-- テキストHTML要素の中身のクリア --}}
             elementInputMessage.value = "";
         }
-        // window.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("DOMContentLoaded", () => {
             const elementListMessage = document.getElementById("list_message");
 
             // Listen開始と、イベント発生時の処理の定義
@@ -86,6 +86,6 @@
                     elementListMessage.prepend(elementLi); // リストの一番上に追加
                 }
             });
-        // });
+        });
     </script>
 </x-app-layout>
